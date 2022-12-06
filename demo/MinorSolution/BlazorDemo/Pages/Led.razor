@@ -1,0 +1,26 @@
+﻿@page "/Led"
+<h3>Led</h3>
+
+<SomeComponent Getal="14" Tekst="Bla" />
+<hr>
+<SomeComponent Getal="@EersteGetal" Tekst="@EersteTekst" />
+<hr>
+<SomeComponent Getal="EersteGetal" Tekst="EersteTekst" />
+
+@* <input @bind-...=""> *@
+@* <div @ref="DivEl"></div> *@
+
+<ul>
+    <li>L: Literal</li>
+    <li>E: Expression</li>
+    <li>D: Directive</li>
+</ul>
+
+@code {
+    public ElementReference DivEl { get; set; }
+    
+    public int EersteGetal { get; set; } = 12;
+
+    public string EersteTekst { get; set; } = "hoi";
+
+}

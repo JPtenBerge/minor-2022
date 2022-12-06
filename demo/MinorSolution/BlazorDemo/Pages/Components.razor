@@ -1,0 +1,14 @@
+﻿@page "/Components"
+<h3>Components</h3>
+
+<button @onclick="() => ShowLifecycle = !ShowLifecycle">Toggle life</button>
+
+@if (ShowLifecycle)
+{
+    <Life Getal="42"></Life>
+}
+
+
+@code {
+    public bool ShowLifecycle { get; set; } = false;
+}
