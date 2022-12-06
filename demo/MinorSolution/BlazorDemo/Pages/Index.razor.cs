@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorDemo.Pages;
 
-public partial class Index
+public partial class Index : ComponentBase
 {
     // [Inject] is only for the pages/componenten
     [Inject] public IKaasRepository KaasRepository { get; set; }
     
     public IEnumerable<KaasEntity> Kazen { get; set; }
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         Kazen = await KaasRepository.GetAll();
     }
