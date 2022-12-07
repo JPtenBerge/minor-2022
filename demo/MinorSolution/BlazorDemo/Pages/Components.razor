@@ -6,7 +6,13 @@
 
 <h4>Autocompleter</h4>
 
-<Autocompleter T="KaasEntity" Data="Kazen" OnItemSelect="HandleItemSelected" />
+<Autocompleter T="KaasEntity" Data="Kazen" OnItemSelect="HandleItemSelected" Context="suggestion">
+    <ItemTemplate>
+        <li class="@(suggestion.IsHighlighted ? "highlight" : "")">
+            @suggestion.Item.Naam ruikt naar @suggestion.Item.Geur - @suggestion.IsHighlighted
+        </li>
+    </ItemTemplate>
+</Autocompleter>
 
 
 <h4>Lifecycle</h4>

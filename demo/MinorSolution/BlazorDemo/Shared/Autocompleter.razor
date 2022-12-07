@@ -1,4 +1,5 @@
-﻿@typeparam T
+﻿@using BlazorDemo.Entities
+@typeparam T
 
 
 @* Immediate = oninput instead of onchange *@
@@ -11,7 +12,7 @@
     <ul>
         @foreach (var suggestion in Suggestions)
         {
-            <li class="@(suggestion.IsHighlighted ? "highlight" : "")"><pre>@System.Text.Json.JsonSerializer.Serialize(suggestion)</pre></li>
+            @ItemTemplate(suggestion)
         }
     </ul>
 }

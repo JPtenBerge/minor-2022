@@ -1,4 +1,6 @@
+using AngleSharp.Dom;
 using BlazorDemo.Shared;
+using Bunit;
 
 namespace BlazorDemo.Tests;
 
@@ -6,6 +8,7 @@ namespace BlazorDemo.Tests;
 public class AutocompleteTests
 {
     private List<Car> _cars;
+    private IRenderedComponent<Autocompleter<Car>> _fixture;
     private Autocompleter<Car> _sut;
 
     [TestInitialize]
@@ -20,7 +23,16 @@ public class AutocompleteTests
             new() { Name = "Christine", UsedInPopularMedia = "Christine" },
             new() { Name = "Lelijke auto van B&A", UsedInPopularMedia = "Bassie en Adriaan" }
         };
-        _sut = new Autocompleter<Car>(); // sut = system under test
+
+        var ctx = new Bunit.TestContext();
+        _fixture = ctx.RenderComponent<Autocompleter<Car>>(parameters =>
+        {
+            parameters.Add(x => x.ItemTemplate, suggestion =>
+            {
+                return $"<li>{suggestion.Item.Name} komt voor in {suggestion.Item.UsedInPopularMedia}</li>";
+            });
+        });
+        _sut = _fixture.Instance;
         _sut.Data = _cars;
     }
 
@@ -104,4 +116,28 @@ public class AutocompleteTests
     // and more tests:
     // nullable query, empty data, empty suggestions, ...
     // Right Boundary Inversion Correctness Exception Performance
+
+    [TestMethod]
+    public void Autocomplete_Gives_Suggestions()
+    {
+        _sut.Query = "e";
+        _sut.Autocomplete();
+        
+        _fixture.Render();
+
+        var lis = _fixture.FindAll("li");
+        Assert.AreEqual(5, lis.Count());
+    }
+    
+    [TestMethod]
+    public void Autocomplete_Uses_Template()
+    {
+        _sut.Query = "Bru";
+        _sut.Autocomplete();
+        
+        _fixture.Render();
+
+        var li = _fixture.Find("li");
+        Assert.AreEqual("Brum komt voor in ZAPP", li.Text());
+    }
 }

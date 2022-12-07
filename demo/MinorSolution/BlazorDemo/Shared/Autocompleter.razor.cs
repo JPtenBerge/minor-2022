@@ -9,6 +9,9 @@ public partial class Autocompleter<T>
     [Parameter] public IEnumerable<T> Data { get; set; }
     public string Query { get; set; }
     public List<NavigableItem>? Suggestions { get; set; }
+
+    [Parameter] public RenderFragment<NavigableItem> ItemTemplate { get; set; }
+    [Parameter] public RenderFragment<NavigableItem> ModalDialogTemplate { get; set; }
     
     [Parameter] public EventCallback<T> OnItemSelect { get; set; }
 
