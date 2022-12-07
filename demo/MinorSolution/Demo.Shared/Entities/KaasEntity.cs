@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlazorDemo.Entities;
+namespace Demo.Shared.Entities;
 
 public class KaasEntity
 {

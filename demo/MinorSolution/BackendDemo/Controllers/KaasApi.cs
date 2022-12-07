@@ -1,15 +1,18 @@
-﻿using BlazorDemo.Entities;
+﻿using Demo.Shared.Entities;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BlazorDemo.Repositories;
+namespace BackendDemo.Controllers;
 
-public class KaasRepository : IKaasRepository
+[Route("api/kaas")]
+[ApiController] // [FromBody] ModelState.IsValid
+public class KaasApi : ControllerBase
 {
     private static List<KaasEntity> _kazen = new()
     {
         new()
         {
             Id = 4,
-            Naam = "Gorgonzolaaaaaaa",
+            Naam = "Backend Gorgonzola",
             Geur = "Zweet van een voet",
             ImageUrl = "https://nl.gorgonzola.com/wp-content/uploads/sites/10/2020/01/origini-head.jpg"
         },
@@ -29,15 +32,17 @@ public class KaasRepository : IKaasRepository
         }
     };
     
-    public Task<IEnumerable<KaasEntity>> GetAll()
+    [HttpGet]
+    public ActionResult<IEnumerable<KaasEntity>> GetAll()
     {
-        return Task.FromResult(_kazen.AsEnumerable());
+        return _kazen;
     }
 
-    public Task<KaasEntity> Add(KaasEntity newKaas)
+    [HttpPost] // You aren't Gonna Need it
+    public ActionResult<KaasEntity> Post(KaasEntity newKaas)
     {
         newKaas.Id = _kazen.Max(x => x.Id) + 1;
         _kazen.Add(newKaas);
-        return Task.FromResult(newKaas); // geupdatete entity
+        return newKaas;
     }
 }
