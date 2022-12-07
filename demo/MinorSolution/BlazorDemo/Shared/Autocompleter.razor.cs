@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using MudBlazor.Services;
 
 namespace BlazorDemo.Shared;
 
@@ -7,6 +9,8 @@ public partial class Autocompleter<T>
     [Parameter] public IEnumerable<T> Data { get; set; }
     public string Query { get; set; }
     public List<NavigableItem>? Suggestions { get; set; }
+    
+    [Parameter] public EventCallback<T> OnItemSelect { get; set; }
 
     public void Autocomplete()
     {
@@ -25,6 +29,22 @@ public partial class Autocompleter<T>
                     break;
                 }
             }
+        }
+    }
+
+    public async Task HandleKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Key == "ArrowDown")
+        {
+            Next();
+        }
+        else if (e.Key == "Enter")
+        {
+            await Select();
+        }
+        else
+        {
+            Autocomplete();
         }
     }
 
@@ -49,5 +69,11 @@ public partial class Autocompleter<T>
 
 
         Suggestions[0].IsHighlighted = true;
+    }
+
+    public async Task Select()
+    {
+        var kaas = Suggestions.Single(x => x.IsHighlighted).Item;
+        await OnItemSelect.InvokeAsync(kaas);
     }
 }

@@ -6,7 +6,7 @@
 
 <h4>Autocompleter</h4>
 
-<Autocompleter T="KaasEntity" Data="Kazen" />
+<Autocompleter T="KaasEntity" Data="Kazen" OnItemSelect="HandleItemSelected" />
 
 
 <h4>Lifecycle</h4>
@@ -26,6 +26,11 @@
     protected override async Task OnInitializedAsync()
     {
         Kazen = await KaasRepo.GetAll();
+    }
+
+    void HandleItemSelected(KaasEntity kaas)
+    {
+        Console.WriteLine("Geselecteerde kaas: " + kaas.Naam + " ruikt naar " + kaas.Geur);
     }
 
 }

@@ -1,17 +1,17 @@
 ﻿@typeparam T
 
-<MudTextField @bind-Value="Query" Immediate="true" OnKeyUp="Autocomplete" />
 
-
-@Query
-
+@* Immediate = oninput instead of onchange *@
+<MudTextField @bind-Value="Query"
+              Immediate="true"
+              OnKeyUp="HandleKeyUp" />
 
 @if (Suggestions != null)
 {
     <ul>
         @foreach (var suggestion in Suggestions)
         {
-            <li><pre>@System.Text.Json.JsonSerializer.Serialize(suggestion)</pre></li>
+            <li class="@(suggestion.IsHighlighted ? "highlight" : "")"><pre>@System.Text.Json.JsonSerializer.Serialize(suggestion)</pre></li>
         }
     </ul>
 }
