@@ -19,7 +19,7 @@ public class KaasBackendRepository : IKaasRepository
 
     public async Task<KaasEntity> Add(KaasEntity newKaas)
     {
-        await _http.PostAsJsonAsync<KaasEntity>("https://localhost:7012/api/kaas", newKaas);
-        return newKaas;
+        var response = await _http.PostAsJsonAsync("https://localhost:7012/api/kaas", newKaas);
+        return (await response.Content.ReadFromJsonAsync<KaasEntity>())!;
     }
 }
