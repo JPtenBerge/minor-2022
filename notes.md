@@ -150,6 +150,110 @@ comp.Getal = elem.GetAttribute("Getal"); // initializatie
 comp.OnInitialized();
 ```
 
+## REST
+
+REpresentational State Transfer
+
+- stateless
+
+HTTP-header "Accept": "application/json"
+
+api/cars
+api/products/4/orders // context
+api/rijbewijs-aanvraag
+
+
+REST maturity levels
+
+Verbs:
+- GET	ophalen
+- POST	aanmaken          /wijzigen
+- PUT	geheel wijzigen   /aanmaken
+- PATCH	deel wijzigen
+- DELETE	verwijderen
+
+- HEAD
+- OPTIONS
+- CONNECT
+
+```sh
+POST  api/car   { make: '...', model: '...' }
+POST  api/car   { make: '...', model: '...' }
+POST  api/car   { make: '...', model: '...' }
+POST  api/car   { make: '...', model: '...' }
+POST  api/car   { make: '...', model: '...' }
+POST  api/car   { make: '...', model: '...' }
+
+PUT  api/car/15  { make: '...', model: '...' }
+PUT  api/car/15  { make: '...', model: '...' }
+PUT  api/car/15  { make: '...', model: '...' }
+PUT  api/car/15  { make: '...', model: '...' }
+PUT  api/car/15  { make: '...', model: '...' }
+PUT  api/car/15  { make: '...', model: '...' }
+```
+
+idempotency
+
+
+HTTP-statuscodessen
+
+2xx - success
+- 200 OK
+- 201 Created
+- 204 No Content
+
+3xx - redirects
+- 301/302 - temporary/permanent
+
+4xx - client error
+- 400 Bad Request
+- 401/403 Unauthorized/Forbidden
+- 404 Not Found
+- 405 Method Not Allowed - POST => ...
+- 415 MediaType not supported - XML => ...
+- 418 I'm a teapot
+
+5xx - server error
+- 500 Internal Server Error
+- 502 Bad Gateway
+- 512 Temporarily unavailable
+
+HATEOAS
+
+Hypermedia As The Engine Of Application State
+
+```json
+[
+	{
+		make: '...',
+		model: '...',
+		links: {
+			'details': 'https://....'.
+			'bekeuringen': 'https://...',	
+
+		}
+	}
+]
+```
+
+Lastig van REST: API versioning
+
+/api/v1/car
+/api/v2/car
+/api/v3/car
+
+/api/car?v=1
+
+X-API-VERSION: 2
+
+### REST testtools
+
+* Postman
+* Insomnia (rustiger op de ogen, gRPC testen zat er eerder in)
+* VS Code extensies:
+  * Thunder client
+  * REST Client (`.http`/`.rest`-bestandjes die je kan delen met teamgenoten)
+
 ## Test-driven development
 
 Voordelen TDD?
@@ -212,3 +316,33 @@ These do not match:
 ```
 
 Met FluentAssertions zijn de verschillen nog kleiner.
+
+## Testen
+
+// unittesten
+- 1 functie
+- zo klein mogelijk stukje code
+
+// integratietesten
+- hele flow
+- "je integreert iets"
+- database betrekt
+- HTML
+  - bUnit
+    - xUnit NUnit
+- API
+- twee componenten met elkaar laten communiceren
+
+// end-to-end testen
+- op knop drukken
+- de browser aan het automatiseren
+- gedeployde applicatie
+
+- Cypress
+- Protractor (dood)
+- Selenium (oud beestje)
+- Playwright (Microsoft)
+- WebdriverIO
+- TestCafe
+- Nightwatch
+
