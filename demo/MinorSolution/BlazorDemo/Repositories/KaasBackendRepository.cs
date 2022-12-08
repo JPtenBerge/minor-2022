@@ -1,6 +1,8 @@
 ﻿using System.Net.Http.Json;
 using Demo.Shared.Entities;
 using Demo.Shared.Entities;
+using Flurl;
+using Flurl.Http;
 
 namespace BlazorDemo.Repositories;
 
@@ -14,12 +16,13 @@ public class KaasBackendRepository : IKaasRepository
     
     public async Task<IEnumerable<KaasEntity>> GetAll()
     {
-        return (await _http.GetFromJsonAsync<IEnumerable<KaasEntity>>("https://localhost:7012/api/kaas"))!;
+        return await "https://localhost:7012/api/kaas".GetJsonAsync<IEnumerable<KaasEntity>>();
     }
 
     public async Task<KaasEntity> Add(KaasEntity newKaas)
     {
-        var response = await _http.PostAsJsonAsync("https://localhost:7012/api/kaas", newKaas);
-        return (await response.Content.ReadFromJsonAsync<KaasEntity>())!;
+        return await "https://localhost:7012/api/kaas"
+            .PostJsonAsync(newKaas)
+            .ReceiveJson<KaasEntity>();
     }
 }

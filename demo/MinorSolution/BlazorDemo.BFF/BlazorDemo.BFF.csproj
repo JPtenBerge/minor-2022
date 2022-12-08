@@ -73,4 +73,11 @@
       <_ContentIncludedByDefault Remove="wwwroot\favicon.ico" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="Pages\.gitkeep">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
