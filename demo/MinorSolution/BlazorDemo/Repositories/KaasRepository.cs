@@ -1,4 +1,4 @@
-﻿using BlazorDemo.Entities;
+﻿using Demo.Shared.Entities;
 
 namespace BlazorDemo.Repositories;
 

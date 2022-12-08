@@ -1,4 +1,4 @@
-﻿using BlazorDemo.Entities;
+﻿using Demo.Shared.Entities;
 using BlazorDemo.Repositories;
 using Microsoft.AspNetCore.Components;
 

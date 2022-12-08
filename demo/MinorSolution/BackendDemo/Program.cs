@@ -10,7 +10,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("blazorfrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5050")
+        policy.WithOrigins("https://localhost:7085")
             .AllowCredentials()
             .AllowAnyHeader()
             .AllowAnyMethod();
