@@ -6,6 +6,7 @@ Before you dive into exercise 1 and 2, feel free to mix these two exercises up b
 
 In this exercise, we'll be adding more CRUD pages:
 
+* Showing the details of a photo
 * Editing a photo's properties (including the image itself)
 * Deleting a photo, after giving confirmation. Display the photo that's about to be deleted with its properties.
 
