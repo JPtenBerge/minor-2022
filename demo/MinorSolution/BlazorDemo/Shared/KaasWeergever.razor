@@ -1,0 +1,27 @@
+﻿@using Demo.Shared.Entities
+
+<button @onclick="AddKaas">Add kaas vanaf kaasweergever</button>
+
+<ul>
+    @foreach (var kaas in Kazen)
+    {
+        <li>KW: @kaas.Naam</li>
+    }
+</ul>
+
+@code {
+    [Parameter]
+    public List<KaasEntity> Kazen { get; set; }
+
+    // protected override bool ShouldRender()
+    // {
+    //     Console.WriteLine("Even kijken of ik alweer mee wil doen met renderen!");
+    //     return Kazen.Count() % 5 == 0;
+    // }
+    
+    async Task AddKaas()
+    {
+        Kazen.Add(new KaasEntity() { Naam = "Gorgonzolaaaa 2" });
+        await InvokeAsync(() => StateHasChanged());
+    }
+}

@@ -1,0 +1,43 @@
+﻿@page "/Optimization"
+@using Demo.Shared.Entities
+<h3>Optimization</h3>
+
+
+<div @onmousemove="HandleDit" style="background: pink; border:  3px dashed purple; border-radius: 30vw; height: 30vh; width: 60vw"></div>
+
+
+<button @onclick="AddKaas">Add kaas</button>
+
+<div style="display: flex; gap:  2rem;">
+    <ul>
+        @foreach (var kaas in Kazen)
+        {
+            <li>@kaas.Naam</li>
+        }
+    </ul>
+
+    <KaasWeergever Kazen="Kazen"></KaasWeergever>
+</div>
+
+@code {
+
+    void HandleDit()
+    {
+        Console.WriteLine("Hallo vanuit handledit!");
+    }
+    
+    public List<KaasEntity> Kazen { get; set; } = new List<KaasEntity>()
+    {
+        new() { Naam = "Emmentaler" },
+        new() { Naam = "Gruyere" },
+        new() { Naam = "Cheddar" }
+    };
+    
+    
+
+    void AddKaas()
+    {
+        Kazen.Add(new KaasEntity() { Naam = "Gorgonzolaaaa" });
+    }
+
+}

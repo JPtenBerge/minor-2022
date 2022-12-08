@@ -1,0 +1,26 @@
+﻿@page "/change-detection"
+<h3>ChangeDetection</h3>
+
+Teller: @Counter
+
+<button @onclick="DoNothing">Doe niks</button>
+
+@code {
+    public int Counter { get; set; } = 0;
+
+    protected override void OnInitialized()
+    {
+        new Timer(new TimerCallback(async _ =>
+        {
+            Console.WriteLine("Hallo callback: " + Counter);
+            Counter++;
+            
+            await InvokeAsync(() => StateHasChanged()); // Blazor Server
+        }), null, 1000, 1000);
+    }
+
+    void DoNothing()
+    {
+        
+    }
+}
