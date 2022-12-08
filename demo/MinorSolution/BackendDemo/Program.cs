@@ -1,8 +1,14 @@
+using BackendDemo.GrpcServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddGrpcReflection();
+
+builder.Services.AddGrpc();
 
 // Cross-origin Resource Sharing
 
@@ -36,6 +42,13 @@ app.UseHttpsRedirection();
 app.UseCors("blazorfrontend");
 
 app.UseAuthorization();
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapGrpcReflectionService();
+}
+
+app.MapGrpcService<KaasGrpcService>();
 
 app.MapControllers();
 

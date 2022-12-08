@@ -346,3 +346,56 @@ Met FluentAssertions zijn de verschillen nog kleiner.
 - TestCafe
 - Nightwatch
 
+## gRPC
+
+gRPC
+- gRPC Remote Procedure Call
+- communicatieframework
+- opvolger van WCF
+
+- Google - Stubby
+- 2015
+- Netflix
+- zeer efficient binair formaat
+
+
+- HTTP/2 - SPDY
+  - multiplexing
+  - HTTPS ONLY
+
+
+- HTTP/3 - Quick UDP Internet Connections
+  - UDP
+
+REST vs gRPC
+- direct service aanspreken
+
+REST
++ eenduidigheid - GET POST PUT
++ laagdrempelig
++ gemak van implementatie
+
+
+gRPC
++ vrijheid van uitdrukking
++ zeer efficient binair formaat - 10MB
+- laagdrempelig
+- gemak van implementatie
+- tooling
+- debugbaarheid
+
+
+Packages:
+```xml
+<PackageReference Include="Google.Protobuf" Version="3.21.11" />
+<PackageReference Include="Grpc.AspNetCore" Version="2.50.0" />
+<PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.50.0" />
+<PackageReference Include="Grpc.Tools" Version="2.51.0">
+```
+
+
+Commando om gRPC UI werkend te krijgen:
+```sh
+grpcui localhost:7196
+```
+

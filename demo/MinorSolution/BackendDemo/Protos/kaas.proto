@@ -1,0 +1,40 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "BackendDemo.Protos";
+
+service KaasService {
+  rpc GetAll(GetAllRequest) returns (GetAllReply);
+  rpc Add(AddRequest) returns (AddReply);
+}
+
+message GetAllRequest {
+  
+}
+
+message GetAllReply {
+  repeated Kaas kazen = 1;
+}
+
+message AddRequest {
+  reserved 2,6,8,9 to 23;
+
+  string naam = 1;
+  
+  string geur = 4;
+  
+  string imageUrl = 3;
+}
+
+message AddReply {
+  Kaas updatedKaas = 1;
+}
+
+message Kaas { // DTO
+  int32 id = 4;
+  
+  string naam = 1;
+
+  string geur = 2;
+
+  string imageUrl = 3;
+}
