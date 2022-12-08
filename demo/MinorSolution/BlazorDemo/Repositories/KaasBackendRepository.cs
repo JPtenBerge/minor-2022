@@ -14,12 +14,12 @@ public class KaasBackendRepository : IKaasRepository
     
     public async Task<IEnumerable<KaasEntity>> GetAll()
     {
-        return (await _http.GetFromJsonAsync<IEnumerable<KaasEntity>>("https://localhost:7196/api/kaas"))!;
+        return (await _http.GetFromJsonAsync<IEnumerable<KaasEntity>>("https://localhost:7012/api/kaas"))!;
     }
 
     public async Task<KaasEntity> Add(KaasEntity newKaas)
     {
-        await _http.PostAsJsonAsync<KaasEntity>("https://localhost:7196/api/kaas", newKaas);
+        await _http.PostAsJsonAsync<KaasEntity>("https://localhost:7012/api/kaas", newKaas);
         return newKaas;
     }
 }
