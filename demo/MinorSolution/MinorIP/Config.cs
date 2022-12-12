@@ -12,6 +12,14 @@ public static class Config
             new IdentityResources.Profile(),
         };
 
+
+    public static IEnumerable<ApiResource> ApiResources =>
+        new ApiResource[]
+        {
+            new ApiResource("kaasapi.read", new string[] { JwtClaimTypes.Name }) { Scopes = new string[] { "lieveapi" } }
+        };
+
+
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
         {

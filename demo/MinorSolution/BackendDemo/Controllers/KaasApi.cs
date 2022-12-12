@@ -6,7 +6,7 @@ namespace BackendDemo.Controllers;
 
 [Route("api/kaas")]
 [ApiController] // [FromBody] ModelState.IsValid
-[Authorize]
+[Authorize(Policy = "alleenbob")]
 public class KaasApi : ControllerBase
 {
     private static List<KaasEntity> _kazen = new()

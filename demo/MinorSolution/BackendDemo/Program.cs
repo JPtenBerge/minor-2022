@@ -9,11 +9,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
 {
     options.Authority = "https://localhost:5001";
+    options.Audience = "kaasapi.read";
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateAudience = false,
         NameClaimType = JwtClaimTypes.Name
     };
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("alleenbob", policy =>
+    {
+        policy.RequireAuthenticatedUser()
+            .RequireClaim(JwtClaimTypes.Name, "Bob Smith");
+    });
 });
 
 builder.Services.AddControllers();

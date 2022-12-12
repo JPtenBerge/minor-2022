@@ -17,10 +17,8 @@ public class KaasBackendRepository : IKaasRepository
     
     public async Task<IEnumerable<KaasEntity>> GetAll()
     {
-        Console.WriteLine("getting kaas");
-        return (await _http.GetFromJsonAsync<IEnumerable<KaasEntity>>("https://localhost:7012/api/kaas"))!;
-
-        // return await "https://localhost:7012/api/kaas".GetJsonAsync<IEnumerable<KaasEntity>>();
+        var client = new FlurlClient(_http).Request("https://localhost:7012/api/kaas");
+        return await client.GetJsonAsync<IEnumerable<KaasEntity>>();
     }
 
     public async Task<KaasEntity> Add(KaasEntity newKaas)

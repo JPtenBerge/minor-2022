@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using BlazorDemo;
 using BlazorDemo.Repositories;
 using BlazorDemo.Services;
+using IdentityModel;
 // using Flurl.Http.Configuration;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor.Services;
@@ -16,7 +17,7 @@ builder.Services.AddAuthorizationCore();
 // builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddTransient<AntiforgeryHandler>();
 builder.Services.AddSingleton<AuthenticationStateProvider, HostAuthenticationStateProvider>();
-builder.Services.AddHttpClient("backend", client => client.BaseAddress = new Uri("https://localhost:7085"))
+builder.Services.AddHttpClient("backend", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<AntiforgeryHandler>();
 builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("backend"));
 
