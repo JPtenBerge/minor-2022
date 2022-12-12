@@ -37,6 +37,7 @@ public class KaasApi : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<KaasEntity>> GetAll()
     {
+        Console.WriteLine("Name: " + User.Identity.Name);
         return _kazen;
     }
 

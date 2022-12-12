@@ -1,4 +1,5 @@
 ﻿using Duende.IdentityServer.Models;
+using IdentityModel;
 
 namespace MinorIP;
 
@@ -14,7 +15,7 @@ public static class Config
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
         {
-            new ApiScope("lieveapi")
+            new ApiScope("lieveapi") { UserClaims = new[] { JwtClaimTypes.Name } },
         };
 
     public static IEnumerable<Client> Clients =>
