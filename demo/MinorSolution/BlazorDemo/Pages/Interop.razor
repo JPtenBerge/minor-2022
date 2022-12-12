@@ -1,0 +1,42 @@
+﻿@page "/Interop"
+@using Demo.Shared.Entities
+@inject IJSRuntime JSRuntime
+
+<h3>Interop</h3>
+
+StringResult: @StringResult
+<button @onclick="GetString">Get string from JS</button>
+
+<hr>
+
+@if (LocationResult != null)
+{
+    <dl>
+        <dt>Latitude:</dt>
+        <dd>@LocationResult.Latitude</dd>
+        <dt>Longitude:</dt>
+        <dd>@LocationResult.Longitude</dd>
+        <dt>Accuracy:</dt>
+        <dd>@LocationResult.Accuracy</dd>
+    </dl>
+}
+
+<button @onclick="GetAsyncObject">Get async object from JS</button>
+
+
+@code {
+    public string StringResult { get; set; }
+
+    public LocationEntity LocationResult { get; set; }
+
+    async Task GetString()
+    {
+        StringResult = await JSRuntime.InvokeAsync<string>("getSampleData");
+    }
+
+    async Task GetAsyncObject()
+    {
+        LocationResult = await JSRuntime.InvokeAsync<LocationEntity>("getPosition");
+    }
+
+}
