@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Shared", "Demo.Shared\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDemo.BFF", "BlazorDemo.BFF\BlazorDemo.BFF.csproj", "{7E2BDE34-2824-4693-AAF3-63B74FA53E93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinorIP", "MinorIP\MinorIP.csproj", "{06BE98CC-8479-46A0-8D97-21FC8FD02A99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{7E2BDE34-2824-4693-AAF3-63B74FA53E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E2BDE34-2824-4693-AAF3-63B74FA53E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E2BDE34-2824-4693-AAF3-63B74FA53E93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06BE98CC-8479-46A0-8D97-21FC8FD02A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06BE98CC-8479-46A0-8D97-21FC8FD02A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06BE98CC-8479-46A0-8D97-21FC8FD02A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06BE98CC-8479-46A0-8D97-21FC8FD02A99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

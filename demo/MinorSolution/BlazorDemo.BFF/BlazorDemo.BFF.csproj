@@ -8,6 +8,11 @@
 
     <ItemGroup>
       <PackageReference Include="AngleSharp" Version="0.17.1" />
+      <PackageReference Include="Duende.BFF" Version="2.0.0" />
+      <PackageReference Include="Duende.BFF.Yarp" Version="2.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="7.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.0" />
+      <PackageReference Include="MudBlazor" Version="6.1.4" />
       <PackageReference Include="Yarp.ReverseProxy" Version="1.1.1" />
     </ItemGroup>
 
@@ -78,6 +83,10 @@
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BlazorDemo\BlazorDemo.csproj" />
     </ItemGroup>
 
 </Project>

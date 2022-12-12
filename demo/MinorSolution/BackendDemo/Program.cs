@@ -4,6 +4,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
+{
+    options.Authority = "https://localhost:5001";
+    
+});
+
 builder.Services.AddControllers();
 
 builder.Services.AddGrpcReflection();
@@ -40,6 +46,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("blazorfrontend");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

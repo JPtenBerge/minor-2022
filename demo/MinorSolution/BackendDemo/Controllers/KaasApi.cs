@@ -1,10 +1,12 @@
 ﻿using Demo.Shared.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendDemo.Controllers;
 
 [Route("api/kaas")]
 [ApiController] // [FromBody] ModelState.IsValid
+[Authorize]
 public class KaasApi : ControllerBase
 {
     private static List<KaasEntity> _kazen = new()
