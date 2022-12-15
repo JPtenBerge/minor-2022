@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  photosharingapplication.frontend.server:
+    image: ${DOCKER_REGISTRY-}photosharingapplicationfrontendserver
+    build:
+      context: .
+      dockerfile: PhotoSharingApplication.Frontend/Server/Dockerfile
+
+  photosharingapplication.identityprovider:
+    image: ${DOCKER_REGISTRY-}photosharingapplicationidentityprovider
+    build:
+      context: .
+      dockerfile: PhotoSharingApplication.IdentityProvider/Dockerfile
+
+
+  photosharingapplication.webservices.grpc.comments:
+    image: ${DOCKER_REGISTRY-}photosharingapplicationwebservicesgrpccomments
+    build:
+      context: .
+      dockerfile: PhotoSharingApplication.WebServices.Grpc.Comments/Dockerfile
+
+
+  photosharingapplication.webservices.rest.photos:
+    image: ${DOCKER_REGISTRY-}photosharingapplicationwebservicesrestphotos
+    build:
+      context: .
+      dockerfile: PhotoSharingApplication.WebServices.Rest.Photos/Dockerfile
+
